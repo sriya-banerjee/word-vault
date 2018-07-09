@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { dataService } from '../shared/data.service';
 import { BlockingProxy } from 'blocking-proxy';
+import {ValidatorService} from './service/validator.service';
 
 @Component({
   selector: 'app-validator',
@@ -15,14 +16,14 @@ export class ValidatorComponent implements OnInit {
   private _selectedOption: number;
   
   @Output() onCurrectSubmission = new EventEmitter<boolean>();
-  constructor(private _dataService: dataService) {
+  constructor(private _dataService: dataService, private _validatorService : ValidatorService) {
     this.optionSelected = false;
 
   }
 
   ngOnInit() {
     
-    this._dataService.isAnyOptionSelected.subscribe(message => this.optionSelected = message);
+    this._dataService.isAnyOptionSelected.subscribe((message) => {debugger;this.optionSelected = message});
 
     this._dataService.currentCorrectOption.subscribe(message => this._correctOption = message);
     this._dataService.currentSelectedOption.subscribe(message => this._selectedOption = message);
@@ -30,7 +31,7 @@ export class ValidatorComponent implements OnInit {
   validateSubmittedAnswer() {
     console.log("In validate"+ "correct : "+this._correctOption + "selected : "+this._selectedOption);
     if (this._correctOption == this._selectedOption) {
-      this._dataService.changeSubmission(true);
+     this._validatorService.changeSubmission(true);
       //this.onCurrectSubmission.emit(true);
     }
     else {
@@ -43,7 +44,7 @@ export class ValidatorComponent implements OnInit {
       else{
         this._attemptNo = 1;
         this._dataService.changeSubmissionSecondTime(true);
-        this._dataService.changeSubmission(false);
+        //this._dataService.changeSubmission(false);
         this._dataService.changeSubmissionSecondTime(false);
       }
     }

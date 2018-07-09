@@ -6,6 +6,7 @@ import { AssessMent } from '../model/assessments.model';
 import { Round } from '../model/rounds.model';
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable()
 export class AssessmentService {
@@ -15,6 +16,8 @@ export class AssessmentService {
   optionList: Option[] = new Array<Option>();
   assesmentList: AssessMent[] = new Array<AssessMent>();
   assessmentListArray: AssessMent[][] = new Array<AssessMent[]>();
+  private _isSubmittedSuccessfully = new BehaviorSubject(false);
+  isSubmittedSuccessfully =this._isSubmittedSuccessfully.asObservable();
   constructor(private _httpClient: HttpClient) {
 
   }
@@ -68,6 +71,9 @@ export class AssessmentService {
 
     }
     return this.roundList;
+  }
+  public isSelectedOptionCorrect(isCorrect: boolean){
+    this._isSubmittedSuccessfully.next(isCorrect);
   }
 }
 

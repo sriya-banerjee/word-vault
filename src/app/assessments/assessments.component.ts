@@ -4,6 +4,7 @@ import { Question } from '../questions/model/questions.model';
 import { AssessMent } from './model/assessments.model';
 import { Option } from '../options/model/options.model';
 import { dataService } from '../shared/data.service';
+import { ValidatorService } from '../validator/service/validator.service';
 import { FrameRange } from '../vault/model/frameRange.model';
 import { Round } from './model/rounds.model';
 
@@ -23,10 +24,20 @@ export class AssessmentsComponent implements OnInit {
   frameRange: FrameRange = new FrameRange();
   startFrame: number;
   endFrame: number;
-  constructor(private _assessmentService: AssessmentService, private _dataService: dataService) {
+  constructor(private _assessmentService: AssessmentService, private _dataService: dataService, private _vaidateService : ValidatorService) {
+    _vaidateService.abc.subscribe((data) =>{this.goToNextAssessment(data);})
+    _dataService.currentCorrectOption.subscribe((data) =>{
+      // if selected option os true, then needs to animate the vault
+      debugger;
+    //  if(data == true){
+        this._assessmentService.isSelectedOptionCorrect(true);
+      //}
+      this.goToNextAssessment(data);
+    })
   }
 
   ngOnInit() {
+    this._vaidateService.abc.subscribe((data) =>{this.goToNextAssessment(data);})
     this._assessmentService.getAssesments().subscribe(data => {
       //console.log(this._assessmentService.ModifyAssessments(data));
       this.roundList = this._assessmentService.ModifyAssessments(data);
@@ -41,14 +52,19 @@ export class AssessmentsComponent implements OnInit {
 
 
     });
+    debugger;
+ 
   }
-  goToNextAssessment($event) {
+
+
+  
+  goToNextAssessment(correctlyAnswerd) {
     
      {
       var findAssessment = false;
       //this.currentAssessmentId = this.currentAssessmentId + 1;
       // Atfirst Need to set that correct submission value to true
-      if($event == true){
+      if(correctlyAnswerd == true){
         this.roundList[this.currentRoundId].correctSubmission[this.currentAssessmentId] = true;
       }
       
