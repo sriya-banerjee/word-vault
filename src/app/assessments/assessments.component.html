@@ -1,0 +1,15 @@
+<div >
+  Read Each Sentence. Choose the Vocabulary Word That Best Complete The Sentence.
+</div>
+<div >
+    <app-questions [question]="question"></app-questions>
+
+
+    <app-vault  (onCurrectSubmission)="goToNextAssessment($event)"></app-vault>
+    <app-options [options]="optionList">
+    </app-options>
+
+<app-validator></app-validator>
+</div>
+
+

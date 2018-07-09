@@ -1,0 +1,172 @@
+{
+    "assessments": [
+         
+                  {
+                     "question": [
+                        "<p>The little lost sheep are in ______!</p>"
+                     ],
+                     "answers": 
+                        [
+                           "partner",
+                           "special",
+                           "danger",
+                           "splendid"
+                        ]
+                     ,
+                     "correctAnswer": "3",
+					 "frameRange": {
+						"start": 1,
+						"end": 46
+					}
+                  
+				  },
+		  
+                  {
+                     "question": [
+                        "<p>Meg is my ______ in math.</p>"
+                     ],
+                     "answers":  [
+                           "danger",
+                           "partner",
+                           "splendid",
+                           "special"
+                        ]
+                     ,
+                     "correctAnswer": "2",
+					 "frameRange": {
+						"start": 47,
+						"end": 110
+					}
+                  
+				  },
+		 {
+		 
+               
+                     "question": [
+                        "<p>The queen lives in a ______ castle.</p>"
+                     ],
+                     "answers":  [
+                           "partner",
+                           "splendid",
+                           "danger",
+                           "special"
+                        ]
+                     ,
+                     "correctAnswer": "2",
+					 "frameRange": {
+						"start": 139,
+						"end": 184
+						}
+                  
+				  },
+		 {
+		 
+               
+                     "question": [
+                        "<p>My _______ and I will work together as a team.</p>"
+                     ],
+                     "answers":[
+                           "special",
+                           "danger",
+                           "partner",
+                           "splendid"
+                        ]
+                     ,
+                     "correctAnswer": "3",
+					 "frameRange": {
+						"start": 185,
+						"end": 230
+						}
+                  
+				  },
+		  {
+		 
+               
+                     "question": [
+                        "<p>This hat is _____ because Gran gave it to me.</p>"
+                     ],
+                     "answers":  [
+                           "danger",
+                           "partner",
+                           "special",
+                           "splendid"
+                        ]
+                     ,
+                     "correctAnswer": "3",
+					 "frameRange": {
+						"start": 231,
+						"end": 276
+						}
+                  
+				  },
+		  {
+		 
+               
+                     "question": [
+                        "<p>Small fish may face ______ in the big sea.</p>"
+                     ],
+                     "answers":  [
+                           "splendid",
+                           "special",
+                           "danger",
+                           "partner"
+                        ]
+                     ,
+                     "correctAnswer": "3",
+					 "frameRange": {
+						"start": 277,
+						"end": 322
+						}
+                  
+				  },
+		  {
+		 
+               
+                     "question": [
+                        "<p>I thanked my host for a _____ meal.</p>"
+                     ],
+                     "answers": [
+                           "splendid",
+                           "danger",
+                           "special",
+                           "partner"
+                        ]
+                     ,
+                     "correctAnswer": "1",
+					 "frameRange": {
+						"start": 278,
+						"end": 368
+						}
+                  
+				  },
+		  {
+		 
+               
+                     "question": [
+                        "<p>He will get ______ glasses to help him see.</p>"
+                     ],
+                     "answers":  [
+                           "danger",
+                           "special",
+                           "partner",
+                           "splendid"
+                        ]
+                     ,
+                     "correctAnswer": "2",
+					 "frameRange": {
+						"start": 369,
+						"end": 456
+						}
+                  
+				  }
+		 ]
+	}
+                 
+            
+      
+         
+                  
+               
+         
+                  
+                

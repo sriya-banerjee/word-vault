@@ -1,0 +1,12 @@
+<div class="row">
+    <div class=".col-sm-12 .col-md-12 .col-lg-12">
+        <p *ngFor="let options of options; let i = index">
+            <label [ngClass]="{
+                'right':getSubmittedCorrectly() && getCorrectOption() == options.id,
+                'wrong': getSubmittedCorrectly() && getSelectedOption() == options.id
+                
+              }"><input type="radio" name="optionList" [checked]="options.id === primarySelectedOption" [value]="options.id+1" (change)="onOptionSelected(i+1)">{{options.name}}</label>
+        </p>
+    </div>
+
+</div>

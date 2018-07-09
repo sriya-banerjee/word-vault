@@ -1,16 +1,45 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { RouterModule, Routes }  from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
+
 
 import { AppComponent } from './app.component';
+import { AssessmentsComponent } from './assessments/assessments.component';
+import { QuestionsComponent } from './questions/questions.component';
+import { OptionsComponent } from './options/options.component';
 
+import {Option} from './options/model/options.model';
+
+import {AssessmentService} from './assessments/service/assessments.service';
+import { ValidatorComponent } from './validator/validator.component';
+import { VaultComponent } from './vault/vault.component';
+
+
+const appRoutes: Routes = [
+  
+  
+ 
+]
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    AssessmentsComponent,
+    QuestionsComponent,
+    OptionsComponent,
+    ValidatorComponent,
+    VaultComponent,
+    
   ],
   imports: [
-    BrowserModule
+    HttpClientModule,
+    BrowserModule,
+    RouterModule.forRoot(
+      appRoutes,
+      
+    )
   ],
-  providers: [],
+  providers: [AssessmentService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
