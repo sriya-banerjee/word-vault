@@ -1,7 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { dataService } from '../shared/data.service';
+import { UserResponseService } from '../shared/userResponse.service';
 import { BlockingProxy } from 'blocking-proxy';
-import {ValidatorService} from './service/validator.service';
 
 @Component({
   selector: 'app-validator',
@@ -16,42 +15,44 @@ export class ValidatorComponent implements OnInit {
   private _selectedOption: number;
   
   @Output() onCurrectSubmission = new EventEmitter<boolean>();
-  constructor(private _dataService: dataService, private _validatorService : ValidatorService) {
+  constructor(private _userResponseService: UserResponseService) {
     this.optionSelected = false;
 
   }
 
   ngOnInit() {
     
-    this._dataService.isAnyOptionSelected.subscribe((message) => {debugger;this.optionSelected = message});
+    this._userResponseService.isAnyOptionSelected.subscribe(message => this.optionSelected = message);
 
-    this._dataService.currentCorrectOption.subscribe(message => this._correctOption = message);
-    this._dataService.currentSelectedOption.subscribe(message => this._selectedOption = message);
+    this._userResponseService.currentCorrectOption.subscribe(message => this._correctOption = message);
+    this._userResponseService.currentSelectedOption.subscribe(message => this._selectedOption = message);
   }
   validateSubmittedAnswer() {
     console.log("In validate"+ "correct : "+this._correctOption + "selected : "+this._selectedOption);
     if (this._correctOption == this._selectedOption) {
-     this._validatorService.changeSubmission(true);
-      //this.onCurrectSubmission.emit(true);
+      //this.onCurrectSubmission.emit(false); 
+      //this._dataService.changeSubmission(true);
+      this.onCurrectSubmission.emit(true);
     }
     else {
       if(this._attemptNo == 1){
-        this._dataService.changeSelectedOption(0);
-        this._dataService.changeOptionSelected(true);
+        this._userResponseService.changeSelectedOption(0);
+        this._userResponseService.changeOptionSelected(true);
         this.optionSelected = false
         this._attemptNo ++;
       }
       else{
         this._attemptNo = 1;
-        this._dataService.changeSubmissionSecondTime(true);
+        this._userResponseService.changeSubmissionSecondTime(true);
+        this.onCurrectSubmission.emit(false);
         //this._dataService.changeSubmission(false);
-        this._dataService.changeSubmissionSecondTime(false);
+        
       }
     }
   }
   resetSelectedOption(){
-    this._dataService.changeSelectedOption(0);
-    this._dataService.changeOptionSelected(true);
+    this._userResponseService.changeSelectedOption(0);
+    this._userResponseService.changeOptionSelected(true);
     this.optionSelected = false;
 
   }

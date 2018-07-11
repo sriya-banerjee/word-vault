@@ -1,19 +1,21 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 
-
-export class dataService {
+@Injectable({
+  providedIn: 'root'
+})
+export class UserResponseService {
   private _correctOption = new BehaviorSubject(0);
   private _isAnyOptionSelected = new BehaviorSubject(false);
   private _selectedOption = new BehaviorSubject(0);
-  private _isSubmittedCorrectly = new BehaviorSubject(false);
+ // private _isSubmittedCorrectly = new BehaviorSubject(false);
   private _isWrongSecondTime = new BehaviorSubject(false);
   //private _currentSelectedOption = new BehaviorSubject(0);
   currentCorrectOption = this._correctOption.asObservable();
   //currentSelectedOption = this._currentSelectedOption.asObservable();
   isAnyOptionSelected = this._isAnyOptionSelected.asObservable();
   currentSelectedOption = this._selectedOption.asObservable();
-  abc = this._isSubmittedCorrectly.asObservable();
+  //isSubmittedCorrectly = this._isSubmittedCorrectly.asObservable();
   isWrongSecondTime = this._isWrongSecondTime.asObservable();
   constructor() {
 
@@ -30,7 +32,7 @@ export class dataService {
     this._selectedOption.next(option);
   }
   // changeSubmission(isSubmitted : boolean){
-  //   //this._isSubmittedCorrectly.next(isSubmitted);
+  //   this._isSubmittedCorrectly.next(isSubmitted);
   // }
   changeSubmissionSecondTime(isWrongSecondTime : boolean){
     this._isWrongSecondTime.next(isWrongSecondTime);

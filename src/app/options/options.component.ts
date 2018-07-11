@@ -1,6 +1,6 @@
-import { Component, OnInit, Input, Output, EventEmitter, OnChanges} from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, OnChanges, ChangeDetectorRef} from '@angular/core';
 import {Option} from './model/options.model';
-import {dataService} from '../shared/data.service';
+import { UserResponseService } from '../shared/userResponse.service';
 
 @Component({
   selector: 'app-options',
@@ -16,13 +16,17 @@ export class OptionsComponent implements OnInit {
   correctOption : number;
   selectedOption :number;
   private _currentSelectedOption : number;
-  constructor(private _dataService : dataService) { }
+  constructor(private _userResponseService : UserResponseService, private _changedetector: ChangeDetectorRef) { }
 
   ngOnInit() {
-    this._dataService.currentSelectedOption.subscribe(message => this._currentSelectedOption = message);
-    this._dataService.isWrongSecondTime.subscribe(message => this.isSubmittedIncorrectly = message);
-    this._dataService.currentCorrectOption.subscribe(message => this.correctOption = message);
-    this._dataService.isAnyOptionSelected.subscribe((message) => 
+    this._userResponseService.currentSelectedOption.subscribe(message => this._currentSelectedOption = message);
+    this._userResponseService.isWrongSecondTime.subscribe((message) => {
+      console.log("In options");
+      console.log(message);
+      this.isSubmittedIncorrectly = message;
+    });
+    this._userResponseService.currentCorrectOption.subscribe(message => this.correctOption = message);
+    this._userResponseService.isAnyOptionSelected.subscribe((message) => 
     {
       
       if(message == false)
@@ -44,8 +48,8 @@ export class OptionsComponent implements OnInit {
   * */
  onOptionSelected(selectedOption){
    this.selectedOption = selectedOption;
-  this._dataService.changeSelectedOption(selectedOption);
-  this._dataService.changeOptionSelected(true);
+  this._userResponseService.changeSelectedOption(selectedOption);
+  this._userResponseService.changeOptionSelected(true);
  }
  getCorrectOption(){
   return this.correctOption;

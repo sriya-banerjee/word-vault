@@ -5,11 +5,11 @@
     <app-questions [question]="question"></app-questions>
 
 
-    <app-vault  (onCurrectSubmission)="goToNextAssessment($event)"></app-vault>
+    <app-vault [isCorrectlyChoosed]="isCorrectlyChoosed" ></app-vault>
     <app-options [options]="optionList">
     </app-options>
 
-<app-validator></app-validator>
+<app-validator (onCurrectSubmission)="goToNextAssessment($event)"></app-validator>
 </div>
 
 

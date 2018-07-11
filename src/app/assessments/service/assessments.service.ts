@@ -16,14 +16,17 @@ export class AssessmentService {
   optionList: Option[] = new Array<Option>();
   assesmentList: AssessMent[] = new Array<AssessMent>();
   assessmentListArray: AssessMent[][] = new Array<AssessMent[]>();
-  private _isSubmittedSuccessfully = new BehaviorSubject(false);
-  isSubmittedSuccessfully =this._isSubmittedSuccessfully.asObservable();
+  private _isSubmittedCorrectly = new BehaviorSubject(false);
+  isSubmittedCorrectly = this._isSubmittedCorrectly.asObservable();
   constructor(private _httpClient: HttpClient) {
 
   }
   public getAssesments(): Observable<any> {
     return this._httpClient.get("../../../assets/assessments/vault_rounds.json");
 
+  }
+  changeSubmission(isSubmitted : boolean){
+    this._isSubmittedCorrectly.next(isSubmitted);
   }
   public ModifyAssessments(prevAssessments): Round[] {
     //Let check any round is present or not
@@ -71,9 +74,6 @@ export class AssessmentService {
 
     }
     return this.roundList;
-  }
-  public isSelectedOptionCorrect(isCorrect: boolean){
-    this._isSubmittedSuccessfully.next(isCorrect);
   }
 }
 

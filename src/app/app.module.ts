@@ -12,8 +12,6 @@ import { OptionsComponent } from './options/options.component';
 import {Option} from './options/model/options.model';
 
 import {AssessmentService} from './assessments/service/assessments.service';
-import { dataService } from './shared/data.service';
-import { ValidatorService } from './validator/service/validator.service';
 import { ValidatorComponent } from './validator/validator.component';
 import { VaultComponent } from './vault/vault.component';
 
@@ -41,7 +39,7 @@ const appRoutes: Routes = [
       
     )
   ],
-  providers: [AssessmentService, dataService, ValidatorService],
+  providers: [AssessmentService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
